@@ -1,0 +1,10 @@
+*.lnk
+*.zip
+*.rar
+*.ReSharper
+_ReSharper.*
+_ReSharper.*/*
+.bin/*
+.build/*
+__*
+__*/*
