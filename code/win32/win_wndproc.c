@@ -21,7 +21,10 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
 #include "../client/client.h"
+#include "../renderer/tr_local.h"
+#include "glw_win.h"
 #include "win_local.h"
+
 
 WinVars_t	g_wv;
 
@@ -39,6 +42,8 @@ cvar_t		*r_fullscreen;
 #define VID_NUM_MODES ( sizeof( vid_modes ) / sizeof( vid_modes[0] ) )
 
 LONG WINAPI MainWndProc( HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam );
+
+extern void WG_RestoreGamma( void );
 
 static qboolean s_alttab_disabled;
 
@@ -364,6 +369,39 @@ LONG WINAPI MainWndProc (
 			SNDDMA_Activate();
 		}
 		break;
+
+	case WM_SETFOCUS:
+	case WM_KILLFOCUS:
+		{
+			int fActive = (uMsg == WM_SETFOCUS);
+
+			// We can't get correct minimized status on WM_KILLFOCUS
+			VID_AppActivate (fActive, FALSE);
+
+			if (glw_state.cdsFullscreen) {
+				if (fActive) {
+					R_SetColorMappings();
+				} else {
+					WG_RestoreGamma();
+					ShowWindow(hWnd, SW_MINIMIZE);
+				}
+			} else {
+				if (fActive) {
+					R_SetColorMappings();
+				} else {
+					WG_RestoreGamma();
+				}
+			}
+
+			if (fActive) {
+				WIN_DisableAltTab();
+			} else {
+				WIN_EnableAltTab();
+			}
+
+			SNDDMA_Activate();
+		}
+	break;
 
 	case WM_MOVE:
 		{
