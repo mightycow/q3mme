@@ -370,6 +370,7 @@ LONG WINAPI MainWndProc (
 		}
 		break;
 
+	// myT: credit goes to the quake3e "excessive dawn" client project for the SETFOCUS and KILLFOCUS handling.
 	case WM_SETFOCUS:
 	case WM_KILLFOCUS:
 		{

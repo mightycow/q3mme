@@ -148,6 +148,7 @@ void GLimp_SetGamma( unsigned char red[256], unsigned char green[256], unsigned 
 		table[2][i] = ( ( ( unsigned short ) blue[i] ) << 8 ) | blue[i];
 	}
 
+	// myT: credit goes to the "ioquake3" engine project for noting that the ramp fix applies to all OS versions.
 	// Win2K and older put this odd restrictions on gamma ramps...
 	vinfo.dwOSVersionInfoSize = sizeof(vinfo);
 	GetVersionEx( &vinfo );
