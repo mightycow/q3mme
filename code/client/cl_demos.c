@@ -1033,11 +1033,13 @@ void CL_DemoList_f(void) {
 	char *buf;
 	char word[MAX_OSPATH];
 	int	index;
+	int newLineIndex;
 	qboolean readName;
 	qboolean haveQuote;
 
 	demoListCount = 0;
 	demoListIndex = 0;
+	newLineIndex = -1;
 	haveQuote = qfalse;
 
 	if (Cmd_Argc() < 2) {
@@ -1057,7 +1059,18 @@ void CL_DemoList_f(void) {
 	i = 0;
 	index = 0;
 	readName = qtrue;
-	while( i < len) {
+	while (i < len) { 
+		// Ignore file lines starting with "//", "#" or ";".
+		if (buf[i] == '\r' || buf[i] == '\n') { newLineIndex = i; }
+		else if (i == newLineIndex + 1 && ((buf[i] == '/' && i < len - 1 && buf[i+1] == '/') || buf[i] == ';' || buf[i] == '#')) {
+			while (i < (len - 1)) {
+				if (buf[i] == '\r' || buf[i] == '\n') {
+					newLineIndex = i++;
+					break;
+				}
+				i++;
+			}
+		}
 		switch (buf[i]) {
 		case '\r':
 			break;
