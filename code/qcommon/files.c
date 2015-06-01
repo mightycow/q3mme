@@ -488,11 +488,11 @@ FS_BuildOSPath
 Qpath may have either forward or backwards slashes
 ===================
 */
-char *FS_BuildOSPath( const char *base, const char *game, const char *qpath ) {
+static char *FS_BuildOSPath_impl( const char *base, const char *game, const char *qpath ) {
 	char	temp[MAX_OSPATH];
 	static char ospath[2][MAX_OSPATH];
-	static int toggle;
-	
+	static int toggle = 0;
+
 	toggle ^= 1;		// flip-flop to allow two returns without clash
 
 	if( !game || !game[0] ) {
@@ -506,6 +506,23 @@ char *FS_BuildOSPath( const char *base, const char *game, const char *qpath ) {
 	return ospath[toggle];
 }
 
+char *FS_BuildOSPath( const char *base, const char *game, const char *qpath ) {
+#if defined _WIN32
+	static char winPath[2][MAX_OSPATH];
+	static int toggle = 0;
+	if ( strlen(qpath) >= 4 && qpath[1] == ':' ) {
+		toggle ^= 1;
+		Q_strncpyz( winPath[toggle], qpath, sizeof(winPath[0]) );
+		FS_ReplaceSeparators( winPath[toggle] );
+
+		return winPath[toggle];
+	} else {
+		return FS_BuildOSPath_impl( base, game, qpath );
+	}
+#else
+	return FS_BuildOSPath_impl( base, game, qpath );
+#endif
+}
 
 /*
 ============

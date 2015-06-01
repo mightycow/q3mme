@@ -1192,6 +1192,7 @@ extern	vmCvar_t		mov_stencilMask;
 extern	vmCvar_t		mov_captureFPS;
 extern	vmCvar_t		mov_captureName;
 extern	vmCvar_t		mov_captureCamera;
+extern	vmCvar_t		mov_capturePath;
 extern	vmCvar_t		mov_seekInterval;
 extern	vmCvar_t		mov_musicFile;
 extern	vmCvar_t		mov_musicStart;

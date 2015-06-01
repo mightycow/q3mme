@@ -645,7 +645,25 @@ void CG_DemosDrawActiveFrame( int serverTime, stereoFrame_t stereoView ) {
 
 	if (captureFrame) {
 		char fileName[MAX_OSPATH];
-		Com_sprintf( fileName, sizeof( fileName ), "capture/%s/%s", mme_demoFileName.string, mov_captureName.string );
+		if ( mov_capturePath.string[0] == '\0' ) {
+			Com_sprintf(fileName, sizeof(fileName), "capture/%s/%s", mme_demoFileName.string, mov_captureName.string); 
+		} else {
+			size_t l = strlen(mov_capturePath.string);
+			int offset = mme_demoFileName.string[0] == '/' ? 1 : 0;
+
+			// If there's a trailing folder separator, remove it.
+			if ( mov_capturePath.string[l - 1] == '/' || mov_capturePath.string[l - 1] == '\\' ) {
+				char path[MAX_OSPATH];
+				strcpy(path, mov_capturePath.string);
+				path[l - 1] = '\0';
+				trap_Cvar_Set("mov_capturePath", path);
+				trap_Cvar_Update(&mov_capturePath);
+			}
+
+			// Construct the final file path.
+			Com_sprintf(fileName, sizeof(fileName), "%s/%s/%s", mov_capturePath.string, mme_demoFileName.string + offset, mov_captureName.string);
+		}
+		
 		trap_MME_Capture( fileName, captureFPS, demo.viewFocus, demo.viewRadius );
 		if ( mov_captureCamera.integer )
 			demoAddViewPos( fileName, demo.viewOrigin, demo.viewAngles, demo.viewFov );

@@ -230,6 +230,7 @@ vmCvar_t	mov_debug;
 vmCvar_t	mov_captureCamera;
 vmCvar_t	mov_captureName;
 vmCvar_t	mov_captureFPS;
+vmCvar_t	mov_capturePath;
 
 vmCvar_t	mov_filterMask;
 vmCvar_t	mov_stencilMask;
@@ -412,6 +413,7 @@ static cvarTable_t cvarTable[] = { // bk001129
 	{ &mov_captureCamera,	"mov_captureCamera",	"0",			NULL,	CVAR_ARCHIVE	},
 	{ &mov_captureName,		"mov_captureName",		"",				NULL,	CVAR_TEMP		},
 	{ &mov_captureFPS,		"mov_captureFPS",		"25",			NULL,	CVAR_ARCHIVE	},
+	{ &mov_capturePath,		"mov_capturePath",		"",				NULL,	CVAR_ARCHIVE	},
 	{ &mov_musicFile,		"mov_musicFile",		"",				NULL,	CVAR_TEMP		},
 	{ &mov_musicStart,		"mov_musicStart",		"0",			NULL,	CVAR_TEMP		},
 	{ &mov_chaseRange,		"mov_chaseRange",		"20",			NULL,	CVAR_ARCHIVE	},
