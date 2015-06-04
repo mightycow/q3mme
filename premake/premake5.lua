@@ -302,7 +302,6 @@ solution "q3mme"
 			defines { "IOQ3_VM", "BOTLIB", "HAVE_VM_COMPILED", "HAVE_VM_NATIVE", "ENGINE_Q3" }
 			includedirs { mme_libs.."jpeg-turbo/include" }
 			includedirs { mme_libs.."freetype/include", mme_libs.."freetype/include/freetype" }
-			includedirs { mme_libs.."mad/include" }
 		
 		configuration "vs*"
 			includedirs { mme_libs.."jpeg-turbo/include/msvc" }
@@ -550,7 +549,7 @@ solution "q3mme"
 			}
 		
 		configuration {}
-			links { "jpeg", "freetype", "libmad" }
+			links { "jpeg", "freetype" }
 		
 		configuration "vs*"
 			AddMasmFile ( "ftola" )
@@ -575,7 +574,7 @@ solution "q3mme"
 			}
 			
 		configuration "x32"
-			libdirs { mme_libs.."jpeg-turbo/x86", mme_libs.."freetype/x86", mme_libs.."mad/x86" }
+			libdirs { mme_libs.."jpeg-turbo/x86", mme_libs.."freetype/x86" }
 			
 		configuration "x64"
 			libdirs { mme_libs.."jpeg-turbo/x64", mme_libs.."freetype/x64" }

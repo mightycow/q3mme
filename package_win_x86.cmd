@@ -9,7 +9,6 @@ ren pak0.zip pak0.pk3
 WinRAR.exe a -ep -ap q3mme.zip .bin\release\quake3mme.exe
 WinRAR.exe a -ep -ap q3mme.zip libs\freetype\x86\freetype.dll
 WinRAR.exe a -ep -ap q3mme.zip libs\jpeg-turbo\x86\jpeg62.dll
-WinRAR.exe a -ep -ap q3mme.zip libs\mad\x86\libmad.dll
 WinRAR.exe a -ep -apmme q3mme.zip .bin\release\cgamex86.dll
 WinRAR.exe a -ep -apmme q3mme.zip .bin\release\qagamex86.dll
 WinRAR.exe a -ep -apmme q3mme.zip .bin\release\uix86.dll
