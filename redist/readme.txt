@@ -11,7 +11,7 @@
     that makes moviemaking a lot easier for everybody.
  
   .data
-    ver : mme 1.7
+    ver : mme 1.7 beta
 !   day : nov 24th 2014
     irc : #moviemaking @ quakenet
     web : q3mme.proboards75.com

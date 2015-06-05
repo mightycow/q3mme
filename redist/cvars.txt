@@ -17,6 +17,7 @@ mov_chaseRange          [0..?.?] Range of chase camera distance when chase camer
 mov_captureCamera       [0, 1] Capture camera postion, angles and fov to a data file
 mov_captureCvars        [text] Save cvars and their values into current project in format mov_captureCvars "cvar cvar cvar"
 mov_captureName         [text] Set a name for outputs
+mov_capturePath         [text] Set to an absolute Windows directory path or empty ("") when you don't want a custom output path
 mov_captureFPS          [1..?] Set desired frame rate in frames per second for future video
 mov_wallhack            [0, bit-field: 1..8] See selected entities through walls:
                         0 = disabled, 1 = see the predicted client, 2 = see everyone except the predicted client,

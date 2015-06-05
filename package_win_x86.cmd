@@ -12,6 +12,6 @@ WinRAR.exe a -ep -ap q3mme.zip libs\jpeg-turbo\x86\jpeg62.dll
 WinRAR.exe a -ep -apmme q3mme.zip .bin\release\cgamex86.dll
 WinRAR.exe a -ep -apmme q3mme.zip .bin\release\qagamex86.dll
 WinRAR.exe a -ep -apmme q3mme.zip .bin\release\uix86.dll
-WinRAR.exe a -ep -apmme q3mme.zip redist\*.txt
+WinRAR.exe a -ep -apmme\docs q3mme.zip redist\*.txt
 WinRAR.exe a -ep -apmme q3mme.zip pak0.pk3
 del pak0.pk3
