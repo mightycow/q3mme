@@ -1,8 +1,11 @@
-Q3MME 1.7
+Q3MME 1.7 beta changes
 
 Additions:
+- can now ignore capture list file lines starting with "//", "#" or ";" to avoid copy-pasting between files
+- added custom output path with absolute Windows paths support (mov_capturePath)
+- added the possibility to loop through edit and view modes in the HUD by clicking the selected mode
+- added the possibility to edit the time field in the HUD when clicking it
 - added blur strength (mme_blurStrength)
-- made true lightning work with non-predicted cleints' povs
 - added camera position smoother on low camera movement for non-linear ecamera interpolation methods (mov_smoothCamPos)
 - added demoSeek command to seek in demo with mm:ss.msec format
 - added movement keys (cg_drawMovementKeys*)
@@ -33,10 +36,20 @@ Additions:
 - added the possibility to loop through edit and view modes in the HUD
 - added the possibility to edit the time field in the HUD
 
+Changes:
+- updated to the latest FreeType library version (used for font rendering)
+- replaced the old libjpeg library with the latest libjpeg-turbo version
+- increased the maximum amount of animation images (credit: WolfcamQL)
+
 Deletions:
+- dropped support for mp3 playback
 - FBO in quake3mme.exe (left in quake3mme_fbo.exe)
 
 Fixes:
+- fixed CPMA support for flag events (capture, return, taken, score)
+- fixed the SetDeviceGammaRamp problem that would require Windows compatibily mode (credit: ioquake3)
+- fixed the lack of gamma reset on the desktop when q3mme is running (credit: quake3e)
+- made true lightning work with non-predicted clients' povs
 - fixed true lightning feature that caused wrong direction of lightning for non-player pov when predicted client used lightning gun
 - fixed never working hide option in clientOverride feature
 - changed the hunk allocation error mode from DROP to FATAL and added some details to the error message
