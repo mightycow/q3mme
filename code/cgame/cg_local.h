@@ -1076,6 +1076,7 @@ extern	itemInfo_t		cg_items[MAX_ITEMS];
 extern	markPoly_t		cg_markPolys[MAX_MARK_POLYS];
 
 extern	vmCvar_t		cg_centertime;
+extern	vmCvar_t		cg_centerfadetime;
 extern	vmCvar_t		cg_damageKick;
 extern	vmCvar_t		cg_runpitch;
 extern	vmCvar_t		cg_runroll;
@@ -1303,6 +1304,7 @@ void CG_DrawSmallStringColor( int x, int y, const char *s, vec4_t color );
 int CG_DrawStrlen( const char *str );
 
 float	*CG_FadeColor( int startMsec, int totalMsec );
+float	*CG_FadeColorEx( int startMsec, int totalMsec, int fadeMsec );
 float *CG_TeamColor( int team );
 void CG_TileClear( void );
 void CG_ColorForHealth( vec4_t hcolor );

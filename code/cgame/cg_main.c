@@ -114,6 +114,7 @@ itemInfo_t			cg_items[MAX_ITEMS];
 
 vmCvar_t	cg_railTrailTime;
 vmCvar_t	cg_centertime;
+vmCvar_t	cg_centerfadetime;
 vmCvar_t	cg_runpitch;
 vmCvar_t	cg_runroll;
 vmCvar_t	cg_damageKick;
@@ -309,6 +310,7 @@ static cvarTable_t cvarTable[] = { // bk001129
 	{ &cg_gun_y, "cg_gunY", "0", NULL, CVAR_CHEAT },
 	{ &cg_gun_z, "cg_gunZ", "0", NULL, CVAR_CHEAT },
 	{ &cg_centertime, "cg_centertime", "3", NULL, CVAR_CHEAT },
+	{ &cg_centerfadetime, "cg_centerfadetime", "0.2", NULL, CVAR_CHEAT },
 	{ &cg_runpitch, "cg_runpitch", "0.002", NULL, CVAR_ARCHIVE},
 	{ &cg_runroll, "cg_runroll", "0.005", NULL, CVAR_ARCHIVE },
 	{ &cg_damageKick , "cg_damageKick", "0", NULL, CVAR_ARCHIVE },

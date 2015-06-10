@@ -457,6 +457,10 @@ CG_FadeColor
 ================
 */
 float *CG_FadeColor( int startMsec, int totalMsec ) {
+	return CG_FadeColorEx( startMsec, totalMsec, FADE_TIME );
+}
+
+float *CG_FadeColorEx( int startMsec, int totalMsec, int fadeMsec ) {
 	static vec4_t color;
 	float t;
 
@@ -472,9 +476,16 @@ float *CG_FadeColor( int startMsec, int totalMsec ) {
 		return NULL;
 	}
 
+	// clamp the fade out duration
+	if ( fadeMsec > totalMsec ) {
+		fadeMsec = totalMsec;
+	} else if (fadeMsec < 0) {
+		fadeMsec = 0;
+	}
+
 	// fade out
-	if ( (float)totalMsec - t < FADE_TIME ) {
-		color[3] = ( (float)totalMsec - t ) * 1.0/FADE_TIME;
+	if ( (float)totalMsec - t < fadeMsec ) {
+		color[3] = ( (float)totalMsec - t ) * 1.0/fadeMsec;
 	} else {
 		color[3] = 1.0;
 	}
@@ -482,7 +493,6 @@ float *CG_FadeColor( int startMsec, int totalMsec ) {
 
 	return color;
 }
-
 
 /*
 ================

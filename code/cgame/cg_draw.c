@@ -1463,7 +1463,7 @@ static void CG_DrawCenterString( void ) {
 
 	charW = BIGCHAR_WIDTH;
 	charH = BIGCHAR_HEIGHT;
-	color = CG_FadeColor( cg.centerPrintTime, 1000 * cg_centertime.value );
+	color = CG_FadeColorEx( cg.centerPrintTime, 1000 * cg_centertime.value, 1000 * cg_centerfadetime.value );
 	if ( !color ) {
 		return;
 	}
