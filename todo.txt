@@ -1,7 +1,3 @@
 todo:
-- update changelog.txt, cvarlist.txt, readme.txt
-- x64 port: replace libmad with something else for mp3 support
-- investigate that q3mme UI mod
+- x64 port
 - optional demo timeline display (a clickable progress bar at the bottom?)
-- improved CPMA demos support (correct colors/teams in NTF/CTF/CTFS and working /clientOverride enemy in 1v1)
-- update the credits...
