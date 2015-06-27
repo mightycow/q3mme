@@ -8,10 +8,10 @@ What is it?
 Contact
 -------
 
-| Media | Location                 |
-|:------|:-------------------------|
-| IRC   | #moviemaking on QuakeNet |
-| Web   | q3mme.proboards.com      |
+| Media | Location                   |
+|:------|:---------------------------|
+| IRC   | #moviemaking on QuakeNet   |
+| Web   | http://q3mme.proboards.com |
  
 History
 -------
@@ -25,12 +25,12 @@ Enjoy the new versions and keep on creating movies.
 Crew
 ----
 
-| Name    | Contributions                    |
-|:--------|:---------------------------------|
-| HMage   | creator and former programmer    |
-| CaNaBiS | former programmer                |
-| ent     | current programmer               |
-| auri    | beta testing, tutorials, support |
+| Name        | Contributions                    |
+|:------------|:---------------------------------|
+| **HMage**   | creator and former programmer    |
+| **CaNaBiS** | former programmer                |
+| **ent**     | current programmer               |
+| **auri**    | beta testing, tutorials, support |
  
 Miscellaneous
 -------------
