@@ -33,13 +33,12 @@ Additions:
 - added scriptable depth of field feature (dof)
 - added some conditions for predicted and non-predicted clients to show or not show certain stuff + it fixes rare crashes
 - added smooth animation for shaders, hud elements and some missed world objects like local ents or marks
-- added the possibility to loop through edit and view modes in the HUD
-- added the possibility to edit the time field in the HUD
 
 Changes:
 - updated to the latest FreeType library version (used for font rendering)
 - replaced the old libjpeg library with the latest libjpeg-turbo version
 - increased the maximum amount of animation images (credit: WolfcamQL)
+- demo folders have a trailing slash instead of a leading slash to enable navigation with letter and digit keys
 
 Deletions:
 - dropped support for mp3 playback
