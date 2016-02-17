@@ -91,16 +91,17 @@ static void UI_DemosMakeList( const char *path ) {
 	sizeLeft = sizeof( s_demos.dirNames );
 	filterNumber = 0;
 	for (i = 0;i < s_demos.numDirs;i++) {
-		int len = strlen( nameRead ) + 1;
+		int len = strlen( nameRead );
 		if (nameRead[0] && Q_stricmp( nameRead, ".") && Q_stricmp( nameRead, "..")) {
-			if ( len + 1> sizeLeft )
+			if ( len + 2> sizeLeft )
 				break;
-			*nameWrite = '/';
-			memcpy( nameWrite + 1, nameRead, len );
-			nameWrite += len + 1;
+			memcpy( nameWrite, nameRead, len );
+			nameWrite[len + 0] = '/';
+			nameWrite[len + 1] = '\0';
+			nameWrite += len + 2;
 			filterNumber++;
 		}
-		nameRead += len;
+		nameRead += len + 1;
 	}
 	s_demos.numDirs = filterNumber;
 	
@@ -128,7 +129,7 @@ static void UI_DemosMakeList( const char *path ) {
 	entryCount = 0;
 	/* Add a .. when in a sub path */
 	if (path[0]) {
-		s_demos.listEntries[ entryCount ++] = "/..";
+		s_demos.listEntries[ entryCount ++] = "../";
 	}
 	/* Add the directory names */
 	i = MAX_ENTRIES - entryCount;
@@ -161,6 +162,7 @@ Demos_MenuEvent
 */
 static void Demos_MenuEvent( void *ptr, int event ) {
 	const char *entry;
+	size_t entryLength;
 	if( event != QM_ACTIVATED ) {
 		return;
 	}
@@ -171,12 +173,19 @@ static void Demos_MenuEvent( void *ptr, int event ) {
 		entry = s_demos.list.itemnames[s_demos.list.curvalue];
 		if (!entry || !entry[0])
 			break;
-		if (entry[0] == '/') {
-			if (!Q_stricmp( entry, "/..")) {
+		entryLength = strlen(entry);
+		if (entry[entryLength - 1] == '/') {
+			if (!Q_stricmp( entry, "../")) {
 				char *lastSlash;
 				lastSlash = strrchr( s_demos.path, '/' );
 				if (lastSlash) {
 					*lastSlash = 0;
+					lastSlash = strrchr(s_demos.path, '/');
+					if (lastSlash) {
+						*(lastSlash + 1) = 0;
+					} else { 
+						s_demos.path[0] = 0;
+					}
 				} else {
 					s_demos.path[0] = 0;
 				}
