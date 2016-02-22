@@ -195,7 +195,7 @@ static void Demos_MenuEvent( void *ptr, int event ) {
 			UI_DemosMakeList( s_demos.path );
 		} else {
 			UI_ForceMenuOff ();
-			trap_Cmd_ExecuteText( EXEC_APPEND, va( "demo \"%s/%s\"\n", s_demos.path, entry) );
+			trap_Cmd_ExecuteText( EXEC_APPEND, va( "demo \"%s%s\"\n", s_demos.path, entry) );
 		}
 		break;
 
