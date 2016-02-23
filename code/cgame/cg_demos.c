@@ -24,6 +24,8 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 demoMain_t demo;
 
+extern int parseDemoTime( const char* string, int* time );
+
 extern int CG_CalcViewValues( void );
 extern void CG_DamageBlendBlob( void );
 extern void CG_InterpolatePlayerState( qboolean grabAngles );
@@ -310,6 +312,11 @@ void demoProcessSnapShots( qboolean hadSkip ) {
 		//Todo our own transition checking if we wanna hear certain sounds
 		CG_TransitionSnapshot();
 	} while (1);
+
+	if (demo.find == findTime && demo.play.time >= demo.findPlayTime) {
+		demo.play.paused = qtrue;
+		demo.find = findNone;
+	}
 }
 
 void demoAddViewPos( const char *baseName, const vec3_t origin, const vec3_t angles, float fov ) {
@@ -427,10 +434,19 @@ void CG_DemosDrawActiveFrame( int serverTime, stereoFrame_t stereoView ) {
 		demo.play.time += (int)demo.play.fraction;
 		demo.play.fraction -= (int)demo.play.fraction;
 	} else if ( demo.find ) {
-		demo.play.time = demo.play.oldTime + 20;
-		demo.play.fraction = 0;
-		if ( demo.play.paused )
-			demo.find = findNone;
+		if (demo.play.time >= demo.findPlayTime)  { 
+			demo.play.paused = qtrue;
+		} else if (demo.findPlayTime - demo.play.time <= 20) {
+			demo.play.time = demo.play.oldTime + 1;
+			demo.play.fraction = 0;
+			if (demo.play.paused)
+				demo.find = findNone;
+		} else {
+			demo.play.time = demo.play.oldTime + 20;
+			demo.play.fraction = 0;
+			if (demo.play.paused)
+				demo.find = findNone;
+		}
 	} else if (!demo.play.paused) {
 		float delta = demo.play.fraction + deltaTime * demo.play.speed;
 		demo.play.time += (int)delta;
@@ -840,6 +856,17 @@ static void demoSeekCommand_f(void) {
 	}
 }
 
+static void demoSeekCorrectCommand_f(void) {
+	int time;
+	if (parseDemoTime(CG_Argv(1), &time)) {
+		demo.find = findTime;
+		demo.findPlayTime = time;
+		demo.play.time = 0;
+		demo.play.fraction = 0;
+		demo.play.paused = qfalse;
+	}
+}
+
 static void musicPlayCommand_f(void) {
 	float length = 2;
 	int musicStart;
@@ -855,9 +882,15 @@ static void musicPlayCommand_f(void) {
 
 static void demoFindCommand_f(void) {
 	const char *cmd = CG_Argv(1);
+	int time = 0;
 
 	if (!Q_stricmp(cmd, "death")) {
 		demo.find = findObituary;
+	} else if (trap_Argc() == 3 && !Q_stricmp(cmd, "time") && parseDemoTime(CG_Argv(2), &time)) {
+		demo.find = findTime;
+		demo.findPlayTime = time;
+		demo.play.time = 0;
+		demo.play.fraction = 0.0f;
 	} else {
 		demo.find = findNone;
 	}
@@ -926,6 +959,7 @@ void demoPlaybackInit(void) {
 	trap_AddCommand("pause");
 	trap_AddCommand("seek");
 	trap_AddCommand("demoSeek");
+	trap_AddCommand("seekCorrect");
 	trap_AddCommand("find");
 	trap_AddCommand("capture");
 	trap_AddCommand("hudInit");
@@ -990,6 +1024,8 @@ qboolean CG_DemosConsoleCommand( void ) {
 		demoSeekCommand_f();
 	} else if (!Q_stricmp(cmd, "demoSeek")) {
 		demoSeekTwoCommand_f();
+	} else if (!Q_stricmp(cmd, "seekCorrect")) {
+		demoSeekCorrectCommand_f();
 	} else if (!Q_stricmp(cmd, "find")) {
 		demoFindCommand_f();
 	} else if (!Q_stricmp(cmd, "speed")) {

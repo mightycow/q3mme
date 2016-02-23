@@ -51,6 +51,7 @@ typedef enum {
 typedef enum {
 	findNone,
 	findObituary,
+	findTime
 } demofindType_t;
 
 typedef struct demoLinePoint_s {
@@ -233,6 +234,7 @@ typedef struct demoMain_s {
 		qhandle_t switchOn, switchOff;
 	} media;
 	demofindType_t find;
+	int            findPlayTime;
 	qboolean	seekEnabled;
 	qboolean	showHud;
 	qboolean	initDone;
