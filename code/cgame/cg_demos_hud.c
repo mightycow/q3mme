@@ -223,8 +223,7 @@ const char *demoTimeString( int time ) {
 
 int parseDemoTime( const char* string, int* time ) {
 	int mins, secs, msec;
-	if(time == NULL)
-	{
+	if (time == NULL) {
 		return 0;
 	}
 	
