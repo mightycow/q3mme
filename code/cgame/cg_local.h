@@ -1174,6 +1174,7 @@ extern	vmCvar_t		cg_centerScale;
 extern	vmCvar_t		cg_centerPrint; 
 extern	vmCvar_t		cg_gibDirectional;
 extern	vmCvar_t		cg_muzzleFlash;
+extern	vmCvar_t		cg_drawEditingHud;
 
 extern	vmCvar_t		cg_drawSpeedometer;
 extern	vmCvar_t		cg_drawSpeedometerScale;

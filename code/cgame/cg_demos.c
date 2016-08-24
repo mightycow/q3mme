@@ -686,7 +686,8 @@ void CG_DemosDrawActiveFrame( int serverTime, stereoFrame_t stereoView ) {
 	} else {
 		if (demo.editType && !cg.playerCent)
 			demoDrawCrosshair();
-		hudDraw();
+		if ( cg_drawEditingHud.integer )
+			hudDraw();
 	}
 //checkCaptureEnd:
 	if ( demo.capture.active && demo.capture.locked && demo.play.time > demo.capture.end  ) {

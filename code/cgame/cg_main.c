@@ -212,6 +212,7 @@ vmCvar_t	cg_centerScale;
 vmCvar_t	cg_centerPrint;
 vmCvar_t	cg_gibDirectional;
 vmCvar_t	cg_muzzleFlash;
+vmCvar_t	cg_drawEditingHud;
 
 vmCvar_t	cg_drawSpeedometer;
 vmCvar_t	cg_drawSpeedometerScale;
@@ -373,6 +374,7 @@ static cvarTable_t cvarTable[] = { // bk001129
 	{ &cg_centerPrint,		"cg_centerPrint",		"1",			NULL,	CVAR_ARCHIVE	},
 	{ &cg_gibDirectional,	"cg_gibDirectional",	"1",			NULL,	CVAR_ARCHIVE	},
 	{ &cg_muzzleFlash,		"cg_muzzleFlash",		"1",			NULL,	CVAR_ARCHIVE	},
+	{ &cg_drawEditingHud,	"cg_drawEditingHud",	"1",			NULL,	CVAR_ARCHIVE	},
 	
 	{ &cg_drawSpeedometer,	"cg_drawSpeedometer",	"0",			NULL,	CVAR_ARCHIVE	},
 	{ &cg_drawSpeedometerScale,"cg_drawSpeedometerScale","1.0",		NULL,	CVAR_ARCHIVE	},
